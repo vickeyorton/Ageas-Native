@@ -8,7 +8,7 @@ import Input from '../../components/common/Input';
 import CustomBtn from '../../components/common/CustomBtn';
 import color from '../../assets/theme/color';
 import styles from './styles';
-import { HOME_PAGE } from '../../constants/routeNames';
+import { CONTACT_PAGE } from '../../constants/routeNames';
 import { connect } from 'react-redux';
 
 
@@ -82,7 +82,7 @@ const IncidentScreen = ({navigation}) => {
                 situation:selectedSituation
             }
             // props.passData(incident);
-            navigation.navigate(HOME_PAGE);
+            navigation.navigate(CONTACT_PAGE);
         }
     }
     return (

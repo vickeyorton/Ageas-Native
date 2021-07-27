@@ -9,17 +9,17 @@ const CarReducer = (state = [], action) => {
         case "GET_CONTACT":
           return {
             ...state,
-            contact: action.payload,
+            contactObj: action.payload,
           };
         case "GET_INVOLVED":
         return {
           ...state,
-          involved: action.payload,
+          involvedObj: action.payload,
         };
         case "GET_PASSENGERS":
         return {
           ...state,
-          resObj: action.payload,
+          addPassObj: action.payload,
         };
   
       default:
