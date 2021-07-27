@@ -63,70 +63,83 @@ const ClaimScreen = ({navigation}) => {
                     {/* <Text> Selected: {driverIssue} </Text> */}
                 </View>
             </View>
-            <View style={[{borderBottomWidth:1,borderColor:"#000",paddingVertical:10},styles.qContainer]}>
-                <Text style={{width:"90%"}}> Was the incident outside of the UK?</Text>
-                <View style={{flex:1}}>
-                    <Switch
-                        trackColor={{ false: "#c6c6c6", true: "#8e419c" }}
-                        thumbColor={q1isEnabled ? "#fff" : "#fff"}
-                        ios_backgroundColor="#3e3e3e"
-                        onValueChange={q1toggleSwitch}
-                        value={q1isEnabled}
-                    />
-                </View>
-            </View>
-            <View style={[{borderBottomWidth:1,borderColor:"#000",paddingVertical:10},styles.qContainer]}>
-                <Text style={{width:"90%"}}> Was anybody injured as a result of the incident or did it involve a pedestrain, a pedal cyclist or a motor cyclist?</Text>
-                <View style={{alignItems:"flex-end",flex:1}}>
-                    <Switch
-                        trackColor={{ false: "#c6c6c6", true: "#8e419c" }}
-                        thumbColor={q2isEnabled ? "#fff" : "#fff"}
-                        ios_backgroundColor="#3e3e3e"
-                        onValueChange={q2toggleSwitch}
-                        value={q2isEnabled}
-                    />
-                </View>
-            </View>
-            <View style={[{borderBottomWidth:1,borderColor:"#000",paddingVertical:10},styles.qContainer]}>
-                <Text style={{width:"90%"}}>Were multiple vehicles involved in the incident (more than your vehicle and 1 other?)</Text>
-                <View style={{alignItems:"flex-end",flex:1}}>
-                    <Switch
-                        trackColor={{ false: "#c6c6c6", true: "#8e419c" }}
-                        thumbColor={q3isEnabled ? "#fff" : "#fff"}
-                        ios_backgroundColor="#3e3e3e"
-                        onValueChange={q3toggleSwitch}
-                        value={q3isEnabled}
-                    />
-                </View>
-            </View>
-            <View style={[{borderBottomWidth:1,borderColor:"#000",paddingVertical:10},styles.qContainer]}>
-                <Text style={{width:"90%"}}> Did this incident involve an act of vandalism, malicious damage, fire or theft?</Text>
-                <View style={{alignItems:"flex-end",flex:1}}>
-                    <Switch
-                        trackColor={{ false: "#c6c6c6", true: "#8e419c" }}
-                        thumbColor={q4isEnabled ? "#fff" : "#fff"}
-                        ios_backgroundColor="#3e3e3e"
-                        onValueChange={q4toggleSwitch}
-                        value={q4isEnabled}
-                    />
-                </View>
-            </View>
-            <View style={styles.checkboxContainer}>
-                <CheckBox
-                value={isSelected}
-                onValueChange={setSelection}
-                style={styles.checkbox}
-                />
-                <Text style={styles.label}>Please confirm that you will take care to answer all question honestly and to the best of your knowledge. Failure to do so may affect your claim.</Text>
-            </View>
-            <View style={{flex:1,justifyContent:"flex-end",flexDirection:"row"}}>
-            <CustomBtn 
-                        bgColor={color.success} color="#fff" 
-                        borderColor={color.success} title="Continue"
-                         onPress={()=>{navigation.navigate(AUTH_PAGE)}}
-                        borderRadius={10}
+            {driverIssue === "Yes" ? 
+                <View style={[{borderBottomWidth:1,borderColor:"#000",paddingVertical:10},styles.qContainer]}>
+                    <Text style={{width:"90%"}}> Was the incident outside of the UK?</Text>
+                    <View style={{flex:1}}>
+                        <Switch
+                            trackColor={{ false: "#c6c6c6", true: "#8e419c" }}
+                            thumbColor={q1isEnabled ? "#fff" : "#fff"}
+                            ios_backgroundColor="#3e3e3e"
+                            onValueChange={q1toggleSwitch}
+                            value={q1isEnabled}
                         />
-            </View>
+                    </View>
+                </View>
+                : null
+            }
+            {q1isEnabled &&
+                <View style={[{borderBottomWidth:1,borderColor:"#000",paddingVertical:10},styles.qContainer]}>
+                    <Text style={{width:"90%"}}> Was anybody injured as a result of the incident or did it involve a pedestrain, a pedal cyclist or a motor cyclist?</Text>
+                    <View style={{alignItems:"flex-end",flex:1}}>
+                        <Switch
+                            trackColor={{ false: "#c6c6c6", true: "#8e419c" }}
+                            thumbColor={q2isEnabled ? "#fff" : "#fff"}
+                            ios_backgroundColor="#3e3e3e"
+                            onValueChange={q2toggleSwitch}
+                            value={q2isEnabled}
+                        />
+                    </View>
+                </View>
+            }
+            {q2isEnabled &&
+                <View style={[{borderBottomWidth:1,borderColor:"#000",paddingVertical:10},styles.qContainer]}>
+                    <Text style={{width:"90%"}}>Were multiple vehicles involved in the incident (more than your vehicle and 1 other?)</Text>
+                    <View style={{alignItems:"flex-end",flex:1}}>
+                        <Switch
+                            trackColor={{ false: "#c6c6c6", true: "#8e419c" }}
+                            thumbColor={q3isEnabled ? "#fff" : "#fff"}
+                            ios_backgroundColor="#3e3e3e"
+                            onValueChange={q3toggleSwitch}
+                            value={q3isEnabled}
+                        />
+                    </View>
+                </View>
+            }
+            {q3isEnabled &&
+                <View style={[{borderBottomWidth:1,borderColor:"#000",paddingVertical:10},styles.qContainer]}>
+                    <Text style={{width:"90%"}}> Did this incident involve an act of vandalism, malicious damage, fire or theft?</Text>
+                    <View style={{alignItems:"flex-end",flex:1}}>
+                        <Switch
+                            trackColor={{ false: "#c6c6c6", true: "#8e419c" }}
+                            thumbColor={q4isEnabled ? "#fff" : "#fff"}
+                            ios_backgroundColor="#3e3e3e"
+                            onValueChange={q4toggleSwitch}
+                            value={q4isEnabled}
+                        />
+                    </View>
+                </View>
+            }
+            {q4isEnabled &&
+                <View style={styles.checkboxContainer}>
+                    <CheckBox
+                    value={isSelected}
+                    onValueChange={setSelection}
+                    style={styles.checkbox}
+                    />
+                    <Text style={styles.label}>Please confirm that you will take care to answer all question honestly and to the best of your knowledge. Failure to do so may affect your claim.</Text>
+                </View>
+            }
+            {isSelected &&
+                <View style={{flex:1,justifyContent:"flex-end",flexDirection:"row"}}>
+                    <CustomBtn 
+                            bgColor={color.success} color="#fff" 
+                            borderColor={color.success} title="Continue"
+                            onPress={()=>{navigation.navigate(AUTH_PAGE)}}
+                            borderRadius={10}
+                        />
+                </View>
+            }
         </View>    
         <View  style={{backgroundColor:"#8e419c", padding:20}}><Footer/></View>
     </Container>

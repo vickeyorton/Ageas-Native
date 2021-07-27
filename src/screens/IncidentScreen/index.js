@@ -3,7 +3,7 @@ import { View, Text,TouchableOpacity} from 'react-native';
 import Container from '../../components/common/Container';
 import Footer from '../../components/common/Footer';
 import {Picker} from '@react-native-community/picker';
-// import {dateList,monthList,yearList,hourList,minuteList} from '../../constants/incident';
+ import {dateList,monthList,yearList,hourList,minuteList} from '../../constants/incident';
 import Input from '../../components/common/Input';
 import CustomBtn from '../../components/common/CustomBtn';
 import color from '../../assets/theme/color';
