@@ -7,8 +7,9 @@ import CustomBtn from '../../components/common/CustomBtn';
 import styles from './styles';
 // import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Footer from '../../components/common/Footer';
+import {INCIDENT_PAGE} from '../../constants/routeNames';
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}) => {
     // const {setOptions, toggleDrawer} = useNavigation();
     // useEffect(() => {
     //     setOptions({
@@ -57,7 +58,7 @@ const LoginScreen = () => {
                 </View>
                 <View style={{marginVertical:15}}>
                     <CustomBtn bgColor="#8e419c" color="#fff" borderColor="#8e419c" title="Sign In" 
-                    // onPress={onPress}
+                    onPress={()=>{navigation.navigate(INCIDENT_PAGE)}}
                     />
                 </View>
                 <View style={{flexDirection:"row",justifyContent:"center"}}>
