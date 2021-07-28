@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import { Text, View, StyleSheet, TouchableOpacity ,ScrollView } from 'react-native';
-import {THANKYOU_PAGE, INVOLVED_PAGE} from '../../constants/routeNames';
+import {THANKYOU_PAGE, INVOLVED_PAGE,CONTACT_PAGE,INCIDENT_PAGE} from '../../constants/routeNames';
 import  AntDesign  from 'react-native-vector-icons/AntDesign'; 
 import {useSelector  } from 'react-redux';
 
@@ -11,6 +11,9 @@ const Summary=({navigation})=> {
   const [showContact,setShowContact]=useState(true)
   const [showInvolved,setShowInvolved]=useState(true)
   const incident = useSelector(state => state.CarReducer.incident);
+  const contactObj = useSelector(state=>state.CarReducer.contactObj);
+  const involvedObj = useSelector(state=>state.CarReducer.involvedObj);
+
   return (
   <ScrollView style={styles.scrollview}>   
     <View style={styles.container}>
@@ -50,7 +53,7 @@ const Summary=({navigation})=> {
              </View>
              <View style={styles.editSection}>
                 <TouchableOpacity>
-                  <Text style={styles.edit}>Edit</Text>
+                  <Text style={styles.edit} onPress={()=>navigation.navigate(INCIDENT_PAGE)}>Edit</Text>
                 </TouchableOpacity>
              </View>
            </View> : null}
@@ -75,19 +78,19 @@ const Summary=({navigation})=> {
            <View style={{ padding : 8}}>
              <View style={{ marginBottom : 9}}>
                  <Text>Home Telephone</Text>
-                 <Text style={styles.value}>077764321</Text>
+                 <Text style={styles.value}>{contactObj ? contactObj.HousePhone : "-"}</Text>
              </View>
              <View style={{ marginBottom : 9}}>
                <Text>Mobile Telephone</Text>
-               <Text style={styles.value}>0798175647</Text>
+               <Text style={styles.value}>{contactObj ? contactObj.MobilePhone : "-"}</Text>
              </View> 
              <View style={{ marginBottom : 9}}> 
                <Text>Email</Text>
-               <Text style={styles.value}>test@gmail.com</Text>
+               <Text style={styles.value}>{contactObj ? contactObj.Email : "-"}</Text>
              </View>
              <View style={styles.editSection}>
                 <TouchableOpacity>
-                  <Text style={styles.edit}>Edit</Text>
+                  <Text style={styles.edit} onPress={()=>navigation.navigate(CONTACT_PAGE)}>Edit</Text>
                 </TouchableOpacity>
              </View>
            </View> : null}
@@ -113,7 +116,7 @@ const Summary=({navigation})=> {
              <View style={styles.subSectionInvolved}>
                  <Text style={styles.property}>No of passengers</Text>
                  {/* <Text style={styles.value}>{involved ? involved.noOfPassengers : "N/A"}</Text> */}
-                 <Text style={styles.value}>1</Text>
+                 <Text style={styles.value}>{involvedObj ? involvedObj.noOfPassengers : "-"}</Text>
              </View>
              <Text>Their vehicle</Text>
              <View style={styles.subSectionInvolved}>
@@ -127,11 +130,11 @@ const Summary=({navigation})=> {
               <View style={styles.subSectionInvolved}>
                  <Text style={styles.property}>No of passengers</Text>
                  {/* <Text style={styles.value}>{involved ? involved.noOfPassengers : "N/A"}</Text> */}
-                 <Text style={styles.value}>1</Text>
+                 <Text style={styles.value}>{involvedObj ? involvedObj.noOfPassengers : "-"}</Text>
              </View>
              <View style={styles.editSection}>
                 <TouchableOpacity>
-                  <Text style={styles.edit}>Edit</Text>
+                  <Text style={styles.edit} onPress={()=>navigation.navigate(INVOLVED_PAGE)}>Edit</Text>
                 </TouchableOpacity>
              </View>
            </View> : null}

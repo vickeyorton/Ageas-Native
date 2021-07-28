@@ -10,10 +10,12 @@ import {
   ScrollView,
 } from 'react-native';
 import {INVOLVED_PAGE} from '../../constants/routeNames';
-import { connect } from 'react-redux';
+import {useDispatch} from 'react-redux';
+import {GET_PASSENGERS} from '../../context/actions';
 
 import {Picker} from '@react-native-community/picker';
-const AddPassenger=({navigation},props)=> {
+const AddPassenger=({navigation})=> {
+  const dispatch = useDispatch();
   const [title, setTitle] = useState('Mr');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -26,11 +28,11 @@ const AddPassenger=({navigation},props)=> {
   const [hpNo, setHpNo] = useState('');
   const [moNo, setMoNo] = useState('');
   const [email, setEmail] = useState('');
-  const elementObj =props.elementData;
 
   const onSubmit = () => {
-    const addPassObj = {
-      elem : elementObj.element,  
+    //if(title && firstName && lastName && hno && addL1 && addL2 && addL3 && addL4 && postcode && hpNo && moNo && email != ""){
+    let addPassObj = {
+      elementNo : "",  
       title: title,
       firstName: firstName,
       lastName: lastName,
@@ -46,8 +48,10 @@ const AddPassenger=({navigation},props)=> {
     };
     console.log(addPassObj);
     console.log('save button is pressed in add passenger page');
+    dispatch({type:GET_PASSENGERS, payload:addPassObj})
     // props.passData(addPassObj); //Dispatch addPassObj
     navigation.navigate(INVOLVED_PAGE);
+ // }
   };
   const onCancel = () => {
     console.log('cancel button pressed in Add Passenger Page');
@@ -191,21 +195,9 @@ const AddPassenger=({navigation},props)=> {
     </TouchableWithoutFeedback>
   );
 }
-const mapStateToProps = (state) => {
-    return {
-        state,
-        elementData: state.CarReducer.elementObj,
-      };
-}
-const mapDispatchToProps = (dispatch)=>{
-    return {
-        passData:(addPassObj) => {
-            dispatch({type:GET_PASSENGERS, payload:addPassObj})
-        }
-      };
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddPassenger);
+
+export default AddPassenger;
 
 const styles = StyleSheet.create({
   addPassengerScreen: {

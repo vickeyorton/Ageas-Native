@@ -11,14 +11,18 @@ import {
 import {CONTACT_PAGE, ADDPASSENGER_PAGE, SUMMARY_PAGE} from '../../constants/routeNames';
 import {Linking} from 'react-native';
 import {Picker} from '@react-native-community/picker';
-import { connect } from 'react-redux';
+import {useDispatch} from 'react-redux';
+import {useSelector  } from 'react-redux';
+import {GET_INVOLVED} from '../../context/actions';
 
 const Involved=({navigation})=> {
+  const dispatch = useDispatch();
   const [ques2Selection, setQues2Selection] = useState('');
   const [val, setVal] = useState(0);
   const [opYes, setOpYes] = useState(true);
   const [opNo, setOpNo] = useState(false);
   const [namesArray, setNamesArray] = useState([]);
+  const addPassObj = useSelector(state=>state.CarReducer.addPassObj);
 
   const PROP1 = [
     {
@@ -36,7 +40,7 @@ const Involved=({navigation})=> {
 
     console.log(val);
 
-    for (let i = 0; i < val; i++) {
+    for (let i = 1; i <=val; i++) {
       arr.push(i);
     }
 
@@ -46,7 +50,7 @@ const Involved=({navigation})=> {
   }, [val]);
 
   const onEdit = index => {
-    const elementObj = {element:namesArray[index]};
+    // let elementObj = {element:namesArray[index]};
     console.log(`Edit button of index ${index} pressed in Involved page`);
     //dispatch element
     navigation.navigate(ADDPASSENGER_PAGE);
@@ -64,10 +68,11 @@ const Involved=({navigation})=> {
   };
 
   const onContinue = () => {
-    const involvedObj = {
+    let involvedObj = {
       noOfPassengers: val,
     };
     console.log(involvedObj);
+    dispatch({type:GET_INVOLVED, payload:involvedObj})
     //props.passData(involvedObj);
     navigation.navigate(SUMMARY_PAGE);
   };
@@ -111,7 +116,7 @@ const Involved=({navigation})=> {
             {namesArray &&
               namesArray.map((elem, index) => (
                 <View key={index} style={styles.involvedPassengerBox}>
-                  <Text style={styles.passengerName}>Your Name {elem}</Text>
+                  <Text style={styles.passengerName}>{elem} {addPassObj ? addPassObj.firstName : "No details" }</Text>
                   <View style={styles.passengerButtonContainer}>
                     <TouchableOpacity
                       style={styles.passengerButton}
@@ -178,22 +183,7 @@ const Involved=({navigation})=> {
   );
 }
 
-const mapStateToProps = (state) => {
-    return {
-        state,
-        addPassenger: state.CarReducer.addPassObj,
-      };
-}
-
-const mapDispatchToProps = (dispatch)=>{
-    return {
-        passData:(involvedObj) => {
-            dispatch({type:GET_INVOLVED, payload:involvedObj})
-        }
-      };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Involved);
+export default Involved;
 
 const styles = StyleSheet.create({
   involvedScreen: {

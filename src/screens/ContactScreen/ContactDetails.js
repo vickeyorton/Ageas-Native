@@ -10,9 +10,11 @@ import {
   Keyboard,
 } from 'react-native';
 import {INCIDENT_PAGE, INVOLVED_PAGE} from '../../constants/routeNames';
-import { connect } from 'react-redux';
+import {useDispatch} from 'react-redux';
+import {GET_CONTACT} from '../../context/actions';
 
 const Contact=({navigation})=> {
+  const dispatch = useDispatch()
   const [mobilePhone, setMobilePhone] = useState('');
   const [homePhone, setHomePhone] = useState('');
   const [email, setEmail] = useState('');
@@ -79,13 +81,14 @@ const Contact=({navigation})=> {
       homePhone != '' &&
       email != ''
     ) {
-      const contactObj = {
+      let contactObj = {
         HousePhone: homePhone,
         MobilePhone: mobilePhone,
         Email: email,
       };
       console.log(contactObj);
       console.log('continue button is pressed in contact page');
+      dispatch({type:GET_CONTACT, payload:contactObj})
       // props.passData(contactObj); dispatch contactObj
       navigation.navigate(INVOLVED_PAGE);
     }
@@ -217,14 +220,8 @@ const Contact=({navigation})=> {
     </TouchableWithoutFeedback>
   );
 }
-const mapDispatchToProps = (dispatch)=>{
-    return {
-        passData:(contactObj) => {
-            dispatch({type:GET_CONTACT, payload:contactObj})
-        }
-      };
-}
-export default connect(null, mapDispatchToProps)(Contact);
+
+export default Contact;
 
 const styles = StyleSheet.create({
   contactScreen: {
