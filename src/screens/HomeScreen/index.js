@@ -68,7 +68,7 @@ const HomeScreen = ({navigation}) => {
                 <ImageBackground source={image} resizeMode="cover" style={styles.image}>
                 <View style={styles.BgOverlay}>
                     <Text style={{fontSize:27,fontWeight:"700",color:"#8e419c"}}>Goodbye exhausting claims</Text>
-                    <Text style={{paddingVertical:20}}>Whether you bought your insurance with Ageas or through an intermediary such as a broker, get in touch using the details below and we’ll get the ball rolling right away.</Text>
+                    <Text style={{paddingVertical:20,fontSize:15}}>Whether you bought your insurance with Ageas or through an intermediary such as a broker, get in touch using the details below and we’ll get the ball rolling right away.</Text>
                 </View>
                 </ImageBackground>
                 <View style={{position:"absolute",bottom:-22,width:"100%",zIndex:3}}>
@@ -97,7 +97,7 @@ const HomeScreen = ({navigation}) => {
                     <TouchableOpacity key={index} style={styles.tabContainer}
                     onPress={()=>{navigation.navigate(CLAIM_PAGE)}}>
                         <Image style={{width:50,height:50}} source={{uri:data.pic}}/>
-                        <Text >{data.name}</Text>
+                        <Text style={{flex:1,justifyContent:"center",textAlign:"center",fontSize:15}}>{data.name}</Text>
                     </TouchableOpacity>)
                 })}
             </View>

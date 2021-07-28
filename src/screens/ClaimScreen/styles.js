@@ -29,7 +29,8 @@ export default StyleSheet.create({
       },
       radioText: {
         color: '#000',
-        marginLeft:5
+        marginLeft:5,
+        fontSize:16
     },
 	radioCircle: {
 		height: 25,
