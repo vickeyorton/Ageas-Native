@@ -57,5 +57,10 @@ export default StyleSheet.create({
       padding: 10,
       borderRadius:10,
       width:160,
+    },
+    borderBottom:{
+      borderBottomWidth:1,
+      borderColor:"#000",
+      paddingVertical:10
     }
 });

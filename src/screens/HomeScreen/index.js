@@ -61,6 +61,16 @@ const HomeScreen = ({navigation}) => {
             return color.primary
         }
     }
+    const checkIndexIsSix = (i) =>{
+        return i === 6;
+    }
+    const checkExceptFirstRow = (i) =>{
+        if(i>2){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     return (
         <Container>
@@ -94,7 +104,7 @@ const HomeScreen = ({navigation}) => {
             <View style={styles.TabWrapper}>
                 {Tab.map((data,index)=>{
                     return(
-                    <TouchableOpacity key={index} style={styles.tabContainer}
+                    <TouchableOpacity key={index} style={[styles.tabContainer,{ borderRightWidth: checkIndexIsSix(index) ? 1 : 0},{ borderTopWidth: checkExceptFirstRow(index) ? 0 : 1}]}
                     onPress={()=>{navigation.navigate(CLAIM_PAGE)}}>
                         <Image style={{width:50,height:50}} source={{uri:data.pic}}/>
                         <Text style={{flex:1,justifyContent:"center",textAlign:"center",fontSize:15}}>{data.name}</Text>

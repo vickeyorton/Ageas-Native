@@ -25,7 +25,8 @@ const Input = ({onChangeText,value,style,placeholder,label, icon, iconPosition,s
 
     return (
         <View style={{paddingVertical:10}}>
-            {label && <Text>{label}</Text>}
+            {label && <Text style={{fontSize: 12,
+    fontWeight: 'bold',marginBottom:10}}>{label}</Text>}
             <View 
             onFocus={()=>{setFocused(true)}}
             onBlur={()=>{setFocused(false)}}

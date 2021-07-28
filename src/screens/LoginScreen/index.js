@@ -5,7 +5,7 @@ import Container from '../../components/common/Container';
 import Input from '../../components/common/Input';
 import CustomBtn from '../../components/common/CustomBtn';
 import styles from './styles';
-// import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Footer from '../../components/common/Footer';
 import {INCIDENT_PAGE} from '../../constants/routeNames';
 
@@ -34,6 +34,12 @@ const LoginScreen = ({navigation}) => {
           setIsValidEmail(false);
         }
       };
+
+    const signIn = () => {
+        if(value && pass && isValidEmail ){
+            navigation.navigate(INCIDENT_PAGE)
+        }
+    }
     return (
     <Container>
         <View style={{backgroundColor:"#f3e9f6", padding:20}}>
@@ -64,7 +70,7 @@ const LoginScreen = ({navigation}) => {
                     onChangeText={onChangePass}
                     value={pass}
                     placeholder="Password"
-                    icon={<Text>icon</Text>}
+                    icon={<MaterialIcon style={{padding:10}} name="remove-red-eye" size={20}></MaterialIcon>}
                     iconPosition="right"
                     secureTextEntry={true}
                 />
@@ -73,7 +79,7 @@ const LoginScreen = ({navigation}) => {
                 </View>
                 <View style={{marginVertical:15}}>
                     <CustomBtn bgColor="#8e419c" color="#fff" borderColor="#8e419c" title="Sign In" 
-                    onPress={()=>{navigation.navigate(INCIDENT_PAGE)}}
+                    onPress={()=>{signIn()}}
                     />
                 </View>
                 <View style={{flexDirection:"row",justifyContent:"center"}}>

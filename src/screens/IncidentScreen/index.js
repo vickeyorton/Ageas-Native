@@ -3,18 +3,21 @@ import { View, Text,TouchableOpacity} from 'react-native';
 import Container from '../../components/common/Container';
 import Footer from '../../components/common/Footer';
 import {Picker} from '@react-native-community/picker';
- import {dateList,monthList,yearList,hourList,minuteList} from '../../constants/incident';
+//  import {dateList,monthList,yearList,hourList,minuteList} from '../../constants/incident';
 import Input from '../../components/common/Input';
 import CustomBtn from '../../components/common/CustomBtn';
 import color from '../../assets/theme/color';
 import styles from './styles';
-import { CONTACT_PAGE } from '../../constants/routeNames';
-import { connect } from 'react-redux';
+import { CONTACT_PAGE ,SUMMARY_PAGE} from '../../constants/routeNames';
+import {useDispatch} from 'react-redux';
+import {GET_INCIDENT} from '../../context/actions';
 
 
 
 
 const IncidentScreen = ({navigation}) => {
+    const dispatch = useDispatch()
+    // const { navigate } = props.navigation;
     const [selectedDate, setSelectedDate] = useState("");
     const [selectedMonth, setSelectedMonth] = useState("");
     const [selectedYear, setSelectedYear] = useState("");
@@ -25,7 +28,7 @@ const IncidentScreen = ({navigation}) => {
     const [town, onChangeTown] = useState(null);
     const [a1,setA1] = useState(true);
     const [other,setOther] = useState(false);
-    const [vehicleReg, setVehicleReg] = useState("");
+    const [vehicleReg, setVehicleReg] = useState("A1");
 
     const vehicleRegis = () =>{
         setA1(!a1);
@@ -81,8 +84,10 @@ const IncidentScreen = ({navigation}) => {
                 town:town,
                 situation:selectedSituation
             }
+            dispatch({type:GET_INCIDENT, payload:incident})
             // props.passData(incident);
             navigation.navigate(CONTACT_PAGE);
+            // navigation.navigate(SUMMARY_PAGE);
         }
     }
     return (
@@ -149,6 +154,7 @@ const IncidentScreen = ({navigation}) => {
                                     <Picker.Item label="11" value="11" />
                                     <Picker.Item label="12" value="12" />
                                 </Picker>
+                                
                                 <Picker
                                     selectedValue={selectedYear}
                                     style={{ height: 50, width: 100 ,borderWidth:1,borderColor:"#000"}}
@@ -237,8 +243,8 @@ const IncidentScreen = ({navigation}) => {
                                 </Picker>
                             </View>
                         </View>
-                        <View style={{paddingVertical:5}}>
-                            <Text style={{fontSize:16}}>Please select your vehicle registration*</Text>
+                        <View style={{paddingVertical:10}}>
+                            <Text style={{fontSize:16, marginBottom:10}}>Please select your vehicle registration*</Text>
                             <View>
                             <TouchableOpacity
                                 style={[styles.regBtn,{backgroundColor:getA1RegBtn()}]}
@@ -303,19 +309,6 @@ const IncidentScreen = ({navigation}) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        state,
-        latest: state.CarReducer.incident,
-      };
-}
 
-const mapDispatchToProps = (dispatch)=>{
-    return {
-        passData:(incident) => {
-            dispatch({type:GET_INCIDENT, payload:incident})
-        }
-      };
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(IncidentScreen);
+export default IncidentScreen;

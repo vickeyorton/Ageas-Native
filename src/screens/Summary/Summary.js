@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import { Text, View, StyleSheet, TouchableOpacity ,ScrollView } from 'react-native';
 import {THANKYOU_PAGE, INVOLVED_PAGE} from '../../constants/routeNames';
 import  AntDesign  from 'react-native-vector-icons/AntDesign'; 
-import { connect } from 'react-redux';
+import {useSelector  } from 'react-redux';
 
 // You can import from local files
 
@@ -10,7 +10,7 @@ const Summary=({navigation})=> {
   const [showIncident,setShowIncident]=useState(true)
   const [showContact,setShowContact]=useState(true)
   const [showInvolved,setShowInvolved]=useState(true)
-  //const involved = props.involvedInfo;
+  const incident = useSelector(state => state.CarReducer.incident);
   return (
   <ScrollView style={styles.scrollview}>   
     <View style={styles.container}>
@@ -35,15 +35,18 @@ const Summary=({navigation})=> {
            <View style={{ padding : 8}}>
              <View style={{ marginBottom : 9}}>
                  <Text>Date and Time</Text>
-                 <Text style={styles.value}>11/08/2021 and 11:20</Text>
+                 {/* <Text style={styles.value}>11/08/2021 and 11:20</Text> */}
+                 <Text style={styles.value}>
+                 {incident ? incident.date : "DD"}/{incident ? incident.month : "MM"}/{incident ? incident.year : "YYYY"} {incident ? incident.hour : "H"}:{incident ? incident.minute : "M"}
+                 </Text>
              </View>
              <View style={{ marginBottom : 9}}>
                <Text>Vehicle Registration</Text>
-               <Text style={styles.value}>A1</Text>
+               <Text style={styles.value}> {incident ? incident.vehicleReg : "-"}</Text>
              </View> 
              <View style={{ marginBottom : 9}}> 
                <Text>Circumstance</Text>
-               <Text style={styles.value}>Met with car accident</Text>
+               <Text style={styles.value}>{incident ? incident.situation : "-"}</Text>
              </View>
              <View style={styles.editSection}>
                 <TouchableOpacity>
@@ -145,17 +148,9 @@ const Summary=({navigation})=> {
   </ScrollView>
   );
 }
-const mapStateToProps = (state) => {
-    return {
-        state,
-        incidentInfo: state.CarReducer.incident,
-        contactInfo: state.CarReducer.contactObj,
-        involvedInfo:state.CarReducer.involvedObj,
-      };
-      
-}
 
-export default connect(mapStateToProps,null)(Summary);
+
+export default Summary;
 
 const styles = StyleSheet.create({
   container: {

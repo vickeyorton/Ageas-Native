@@ -42,7 +42,7 @@ const ClaimScreen = ({navigation}) => {
             <View >
                 <Text style={{fontSize:27,fontWeight:"700",color:"#8e419c"}}>How to make a claim</Text>
             </View>
-            <View style={{borderBottomWidth:1,borderColor:"#000",paddingVertical:10}}>
+            <View style={styles.borderBottom}>
                 <Text style={{fontSize:16}}>Do you think you or the named driver could have been at fault for the incident?</Text>
                 <View  style={styles.RadioBtnWrap}>
                     {PROP.map(res => {
@@ -64,8 +64,8 @@ const ClaimScreen = ({navigation}) => {
                 </View>
             </View>
             {driverIssue === "Yes" ? 
-                <View style={[{borderBottomWidth:1,borderColor:"#000",paddingVertical:10},styles.qContainer]}>
-                    <Text style={{width:"90%",fontSize:16}}> Was the incident outside of the UK?</Text>
+                <View style={[styles.borderBottom,styles.qContainer]}>
+                    <Text style={{width:"90%",fontSize:16}}> Was the incident inside of the UK?</Text>
                     <View style={{flex:1}}>
                         <Switch
                             trackColor={{ false: "#c6c6c6", true: "#8e419c" }}
@@ -79,7 +79,7 @@ const ClaimScreen = ({navigation}) => {
                 : null
             }
             {q1isEnabled &&
-                <View style={[{borderBottomWidth:1,borderColor:"#000",paddingVertical:10},styles.qContainer]}>
+                <View style={[styles.borderBottom,styles.qContainer]}>
                     <Text style={{width:"90%",fontSize:16}}> Was anybody injured as a result of the incident or did it involve a pedestrain, a pedal cyclist or a motor cyclist?</Text>
                     <View style={{alignItems:"flex-end",flex:1}}>
                         <Switch
@@ -93,7 +93,7 @@ const ClaimScreen = ({navigation}) => {
                 </View>
             }
             {q2isEnabled &&
-                <View style={[{borderBottomWidth:1,borderColor:"#000",paddingVertical:10},styles.qContainer]}>
+                <View style={[styles.borderBottom,styles.qContainer]}>
                     <Text style={{width:"90%",fontSize:16}}>Were multiple vehicles involved in the incident (more than your vehicle and 1 other?)</Text>
                     <View style={{alignItems:"flex-end",flex:1}}>
                         <Switch
@@ -107,7 +107,7 @@ const ClaimScreen = ({navigation}) => {
                 </View>
             }
             {q3isEnabled &&
-                <View style={[{borderBottomWidth:1,borderColor:"#000",paddingVertical:10},styles.qContainer]}>
+                <View style={[styles.borderBottom,styles.qContainer]}>
                     <Text style={{width:"90%",fontSize:16}}> Did this incident involve an act of vandalism, malicious damage, fire or theft?</Text>
                     <View style={{alignItems:"flex-end",flex:1}}>
                         <Switch
@@ -120,7 +120,7 @@ const ClaimScreen = ({navigation}) => {
                     </View>
                 </View>
             }
-            {q4isEnabled &&
+            {q2isEnabled &&
                 <View style={styles.checkboxContainer}>
                     <CheckBox
                     value={isSelected}
