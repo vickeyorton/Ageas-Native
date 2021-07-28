@@ -88,9 +88,9 @@ const IncidentScreen = ({navigation}) => {
     return (
         <Container>
             <View>
-                <View style={{backgroundColor:"#8e419c", padding:15}}>
+                {/* <View style={{backgroundColor:"#8e419c", padding:15}}>
                     <Text style={{fontSize:27,fontWeight:"500",color:"#fff",textAlign:"center"}}>Incident detail</Text>
-                </View>
+                </View> */}
                 <View style={{padding:20}}>
                     <View>
                         <Text style={{fontSize:16}}>Please tell us when the incident happened*</Text>

@@ -24,6 +24,16 @@ const LoginScreen = ({navigation}) => {
     // }, [])
     const [value, onChangeText] = useState(null);
     const [pass, onChangePass] = useState(null);
+    const [isValidEmail,setIsValidEmail] = useState(true);
+    const handleValidEmail = val => {
+        if (val.includes('@') && val.includes('.com')) {
+            onChangeText(val);
+          setIsValidEmail(true);
+        } else {
+            onChangeText(val);
+          setIsValidEmail(false);
+        }
+      };
     return (
     <Container>
         <View style={{backgroundColor:"#f3e9f6", padding:20}}>
@@ -40,10 +50,15 @@ const LoginScreen = ({navigation}) => {
                 <Text style={{paddingVertical:5}}>We know making a claim can be a stressful time, so we’re here to help every step of the way and get things back to normal for you, quick smart. Please record your claim through the form below and we'll get in touch as soon as possible.</Text>
                 <Input
                     // label="Email Address"
-                    onChangeText={onChangeText}
+                    onChangeText={(e)=>{handleValidEmail(e)}}
                     value={value}
                     placeholder="Email Address"
                 />
+                {isValidEmail ? null : (
+                    <Text style={styles.errorMsg}>
+                    *email must contain "@" and ".com"
+                    </Text>
+                )}
                 <Input
                     // label="Password"
                     onChangeText={onChangePass}

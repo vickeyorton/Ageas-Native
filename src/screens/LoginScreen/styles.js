@@ -5,5 +5,11 @@ export default StyleSheet.create({
         height:200,
         borderRadius:10,
         marginVertical:10,
-    }
+    },
+    errorMsg: {
+        color: 'red',
+        fontSize: 12,
+        marginTop: -10,
+        paddingBottom:10
+      },
 });
