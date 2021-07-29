@@ -1,5 +1,5 @@
-import React,{useState} from 'react';
-import { View, Text,TouchableOpacity} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Text, TouchableOpacity} from 'react-native';
 import Container from '../../components/common/Container';
 import Footer from '../../components/common/Footer';
 import {Picker} from '@react-native-community/picker';
@@ -8,8 +8,8 @@ import Input from '../../components/common/Input';
 import CustomBtn from '../../components/common/CustomBtn';
 import color from '../../assets/theme/color';
 import styles from './styles';
-import { CONTACT_PAGE ,SUMMARY_PAGE} from '../../constants/routeNames';
-import {useDispatch} from 'react-redux';
+import {CONTACT_PAGE} from '../../constants/routeNames';
+import {useSelector, useDispatch} from 'react-redux';
 import {GET_INCIDENT} from '../../context/actions';
 
 
@@ -29,6 +29,24 @@ const IncidentScreen = ({navigation}) => {
     const [a1,setA1] = useState(true);
     const [other,setOther] = useState(false);
     const [vehicleReg, setVehicleReg] = useState("A1");
+    
+
+    // useEffect(() => {
+        const incident = useSelector(state => state.CarReducer.incident);
+        console.log(".....",incident);
+        useEffect(() => {
+        if(incident){
+            setSelectedDate(incident.date);
+            setSelectedMonth(incident.month);
+            setSelectedYear(incident.year);
+            setSelectedHour(incident.hour);
+            setSelectedMinute(incident.minute);
+            setSelectedSituation(incident.situation);
+            onChangeStreet(incident.street);
+            onChangeTown(incident.town);
+        }
+      },[]);
+    
 
     const vehicleRegis = () =>{
         setA1(!a1);
@@ -84,8 +102,7 @@ const IncidentScreen = ({navigation}) => {
                 town:town,
                 situation:selectedSituation
             }
-            dispatch({type:GET_INCIDENT, payload:incident})
-            // props.passData(incident);
+            dispatch({type:GET_INCIDENT, payload:incident});
             navigation.navigate(CONTACT_PAGE);
             // navigation.navigate(SUMMARY_PAGE);
         }
@@ -127,6 +144,25 @@ const IncidentScreen = ({navigation}) => {
                                     <Picker.Item label="10" value="10" />
                                     <Picker.Item label="11" value="11" />
                                     <Picker.Item label="12" value="12" />
+                                    <Picker.Item label="13" value="13" />
+                                    <Picker.Item label="14" value="14" />
+                                    <Picker.Item label="15" value="15" />
+                                    <Picker.Item label="16" value="16" />
+                                    <Picker.Item label="17" value="17" />
+                                    <Picker.Item label="18" value="18" />
+                                    <Picker.Item label="19" value="19" />
+                                    <Picker.Item label="20" value="20" />
+                                    <Picker.Item label="21" value="21" />
+                                    <Picker.Item label="22" value="22" />
+                                    <Picker.Item label="23" value="23" />
+                                    <Picker.Item label="24" value="24" />
+                                    <Picker.Item label="25" value="25" />
+                                    <Picker.Item label="26" value="26" />
+                                    <Picker.Item label="27" value="27" />
+                                    <Picker.Item label="28" value="28" />
+                                    <Picker.Item label="29" value="29" />
+                                    <Picker.Item label="30" value="30" />
+                                    <Picker.Item label="31" value="31" />
                                 </Picker>
                                 <Picker
                                     selectedValue={selectedMonth}
@@ -168,21 +204,29 @@ const IncidentScreen = ({navigation}) => {
                                         })
                                     } */}
                                     <Picker.Item label="YYYY" value="YYYY" />
-                                    <Picker.Item label="1998" value="1998" />
-                                    <Picker.Item label="1999" value="1999" />
-                                    <Picker.Item label="2000" value="2000" />
-                                    <Picker.Item label="2001" value="2001" />
-                                    <Picker.Item label="2002" value="2002" />
-                                    <Picker.Item label="2003" value="2003" />
-                                    <Picker.Item label="2004" value="2004" />
-                                    <Picker.Item label="2005" value="2005" />
-                                    <Picker.Item label="2006" value="2006" />
-                                    <Picker.Item label="2007" value="2007" />
-                                    <Picker.Item label="2008" value="2008" />
-                                    <Picker.Item label="2009" value="2009" />
-                                    <Picker.Item label="2010" value="2010" />
-                                    <Picker.Item label="2020" value="2020" />
                                     <Picker.Item label="2021" value="2021" />
+                                    <Picker.Item label="2020" value="2020" />
+                                    <Picker.Item label="2019" value="2019" />
+                                    <Picker.Item label="2018" value="2018" />
+                                    <Picker.Item label="2017" value="2017" />
+                                    <Picker.Item label="2016" value="2016" />
+                                    <Picker.Item label="2015" value="2015" />
+                                    <Picker.Item label="2014" value="2014" />
+                                    <Picker.Item label="2013" value="2013" />
+                                    <Picker.Item label="2012" value="2012" />
+                                    <Picker.Item label="2011" value="2011" />
+                                    <Picker.Item label="2010" value="2010" />
+                                    <Picker.Item label="2009" value="2009" />
+                                    <Picker.Item label="2008" value="2008" />
+                                    <Picker.Item label="2007" value="2007" />
+                                    <Picker.Item label="2006" value="2006" />
+                                    <Picker.Item label="2005" value="2005" />
+                                    <Picker.Item label="2004" value="2004" />
+                                    <Picker.Item label="2003" value="2003" />
+                                    <Picker.Item label="2002" value="2002" />
+                                    <Picker.Item label="2001" value="2001" />
+                                    <Picker.Item label="2000" value="2000" />
+                                    <Picker.Item label="1999" value="1999" />
                                 </Picker>
                             </View>
                         </View>
@@ -214,6 +258,18 @@ const IncidentScreen = ({navigation}) => {
                                     <Picker.Item label="10" value="10" />
                                     <Picker.Item label="11" value="11" />
                                     <Picker.Item label="12" value="12" />
+                                    <Picker.Item label="13" value="13" />
+                                    <Picker.Item label="14" value="14" />
+                                    <Picker.Item label="15" value="15" />
+                                    <Picker.Item label="16" value="16" />
+                                    <Picker.Item label="17" value="17" />
+                                    <Picker.Item label="18" value="18" />
+                                    <Picker.Item label="19" value="19" />
+                                    <Picker.Item label="20" value="20" />
+                                    <Picker.Item label="21" value="21" />
+                                    <Picker.Item label="22" value="22" />
+                                    <Picker.Item label="23" value="23" />
+                                    <Picker.Item label="24" value="24" />
                                 </Picker>
                                 <Picker
                                     selectedValue={selectedMinute}
@@ -240,6 +296,25 @@ const IncidentScreen = ({navigation}) => {
                                     <Picker.Item label="10" value="10" />
                                     <Picker.Item label="11" value="11" />
                                     <Picker.Item label="12" value="12" />
+                                    <Picker.Item label="13" value="13" />
+                                    <Picker.Item label="14" value="14" />
+                                    <Picker.Item label="15" value="15" />
+                                    <Picker.Item label="16" value="16" />
+                                    <Picker.Item label="17" value="17" />
+                                    <Picker.Item label="18" value="18" />
+                                    <Picker.Item label="19" value="19" />
+                                    <Picker.Item label="20" value="20" />
+                                    <Picker.Item label="21" value="21" />
+                                    <Picker.Item label="22" value="22" />
+                                    <Picker.Item label="23" value="23" />
+                                    <Picker.Item label="24" value="24" />
+                                    <Picker.Item label="25" value="25" />
+                                    <Picker.Item label="26" value="26" />
+                                    <Picker.Item label="27" value="27" />
+                                    <Picker.Item label="28" value="28" />
+                                    <Picker.Item label="29" value="29" />
+                                    <Picker.Item label="30" value="30" />
+                                    <Picker.Item label="31" value="31" />
                                 </Picker>
                             </View>
                         </View>
@@ -299,6 +374,12 @@ const IncidentScreen = ({navigation}) => {
                                 onPress={()=>{continueHandle()}}
                                 borderRadius={10}
                         />
+                        {/* <TouchableOpacity
+                            style={styles.continueButton}
+                            onPress={()=>{continueHandle()}}
+                        >
+                            <Text style={styles.continueButtonText}>Continue</Text>
+                        </TouchableOpacity> */}
                     </View>
                 </View>
             </View>

@@ -92,7 +92,7 @@ const ClaimScreen = ({navigation}) => {
                     </View>
                 </View>
             }
-            {q2isEnabled &&
+            {q1isEnabled &&
                 <View style={[styles.borderBottom,styles.qContainer]}>
                     <Text style={{width:"90%",fontSize:16}}>Were multiple vehicles involved in the incident (more than your vehicle and 1 other?)</Text>
                     <View style={{alignItems:"flex-end",flex:1}}>
@@ -106,7 +106,7 @@ const ClaimScreen = ({navigation}) => {
                     </View>
                 </View>
             }
-            {q3isEnabled &&
+            {q1isEnabled &&
                 <View style={[styles.borderBottom,styles.qContainer]}>
                     <Text style={{width:"90%",fontSize:16}}> Did this incident involve an act of vandalism, malicious damage, fire or theft?</Text>
                     <View style={{alignItems:"flex-end",flex:1}}>
