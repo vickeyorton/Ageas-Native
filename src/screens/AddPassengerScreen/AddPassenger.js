@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,7 +10,7 @@ import {
   ScrollView,
 } from 'react-native';
 import {INVOLVED_PAGE} from '../../constants/routeNames';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {GET_PASSENGERS} from '../../context/actions';
 
 import {Picker} from '@react-native-community/picker';
@@ -28,6 +28,26 @@ const AddPassenger=({navigation})=> {
   const [hpNo, setHpNo] = useState('');
   const [moNo, setMoNo] = useState('');
   const [email, setEmail] = useState('');
+
+  // useEffect(() => {
+    const addPassObj = useSelector(state => state.CarReducer.addPassObj);
+    console.log(".....",addPassObj);
+    useEffect(() => {
+    if(addPassObj){
+        setTitle(addPassObj.title);
+        setFirstName(addPassObj.firstName);
+        setLastName(addPassObj.lastName);
+        setHno(addPassObj.HouseNo);
+        setAddL1(addPassObj.addressLane1);
+        setAddL2(addPassObj.addressLane2);
+        setAddL3(addPassObj.addressLane3);
+        setAddL4(addPassObj.addressLane4);
+        setPostcode(addPassObj.postcode);
+        setHpNo(addPassObj.HousePhone);
+        setMoNo(addPassObj.MobilePhone);
+        setEmail(addPassObj.Email);
+    }
+  },[]);
 
   const onSubmit = () => {
     //if(title && firstName && lastName && hno && addL1 && addL2 && addL3 && addL4 && postcode && hpNo && moNo && email != ""){

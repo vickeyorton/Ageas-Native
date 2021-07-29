@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,11 +10,11 @@ import {
   Keyboard,
 } from 'react-native';
 import {INCIDENT_PAGE, INVOLVED_PAGE} from '../../constants/routeNames';
-import {useDispatch} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {GET_CONTACT} from '../../context/actions';
 
 const Contact=({navigation})=> {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [mobilePhone, setMobilePhone] = useState('');
   const [homePhone, setHomePhone] = useState('');
   const [email, setEmail] = useState('');
@@ -23,6 +23,17 @@ const Contact=({navigation})=> {
   const [isValidHnum, setIsValidHnum] = useState(true);
   const [isValidMnum, setIsValidMnum] = useState(true);
   const [isValidEmail, setIsValidEmail] = useState(true);
+
+   // useEffect(() => {
+    const contactObj = useSelector(state => state.CarReducer.contactObj);
+    console.log(".....",contactObj);
+    useEffect(() => {
+    if(contactObj){
+        setHomePhone(contactObj.HousePhone);
+        setMobilePhone(contactObj.MobilePhone);
+        setEmail(contactObj.Email);
+    }
+  },[]);
 
   const PROP1 = [
     {

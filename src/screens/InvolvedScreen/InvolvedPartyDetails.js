@@ -23,6 +23,14 @@ const Involved=({navigation})=> {
   const [opNo, setOpNo] = useState(false);
   const [namesArray, setNamesArray] = useState([]);
   const addPassObj = useSelector(state=>state.CarReducer.addPassObj);
+  // useEffect(() => {
+    const involvedObj = useSelector(state => state.CarReducer.involvedObj);
+    console.log(".....",involvedObj);
+    useEffect(() => {
+    if(involvedObj){
+        setVal(involvedObj.noOfPassengers);
+    }
+  },[]);
 
   const PROP1 = [
     {
