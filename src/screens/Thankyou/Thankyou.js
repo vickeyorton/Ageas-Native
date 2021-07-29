@@ -1,7 +1,17 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { useEffect } from 'react';
+import { useRoute, useNavigation } from '@react-navigation/native';
+
 
  const Thankyou=()=> {
+  const route = useRoute();
+  const nav = useNavigation();
+  useEffect(() => {
+         nav.setOptions({
+              headerLeft: null,
+          })
+  }, [nav]);
   return (
     <View style={styles.container}>
      
