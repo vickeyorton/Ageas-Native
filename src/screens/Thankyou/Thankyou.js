@@ -1,15 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useEffect } from 'react';
 import { useRoute, useNavigation } from '@react-navigation/native';
+import {HOME_PAGE} from '../../constants/routeNames';
 
 
- const Thankyou=()=> {
+ const Thankyou=({navigation})=> {
   const route = useRoute();
   const nav = useNavigation();
   useEffect(() => {
          nav.setOptions({
               headerLeft: null,
+              headerTitleAlign:"center"
           })
   }, [nav]);
   return (
@@ -21,7 +23,9 @@ import { useRoute, useNavigation } from '@react-navigation/native';
         <Text style={styles.para2}>The claim number for your policy is : <Text style={styles.policyNum}>4062863N</Text></Text>
         <Text style={styles.para3}>if you need to contact us please call : <Text style={styles.contact}>03451 122 3018</Text> </Text>
       </View>
-      
+      <View style={styles.btnCont}>
+      <TouchableOpacity onPress={()=>navigation.navigate(HOME_PAGE)} style={styles.homeBtn}><Text style={styles.homeBtnText}>Home</Text></TouchableOpacity>
+      </View>
      
     </View>
   );
@@ -57,6 +61,31 @@ const styles = StyleSheet.create({
     color : "blue",
     textDecorationLine : "underline"
     
+  },
+  btnCont:{
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop:10
+  },
+  homeBtn:{
+    borderWidth: 1,
+    width: "33%",
+    backgroundColor: '#fff',
+    borderColor: '#8e419c',
+    borderRadius: 26,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingVertical: 10,
+    fontSize:16,
+    marginHorizontal:"auto",
+
+
+  },
+  homeBtnText:{
+    color:"#8e419c",
+    fontSize:16
+
   }
+
   
 });

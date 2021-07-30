@@ -200,9 +200,6 @@ const AddPassenger=({navigation})=> {
               />
             </View>
             <View style={styles.bottomButtons}>
-              <TouchableOpacity style={styles.cancelButton} onPress={onCancel}>
-                <Text style={styles.cancelButtonText}>Cancel</Text>
-              </TouchableOpacity>
               <TouchableOpacity
                 style={styles.saveButton}
                 onPress={() => onSubmit()}>
@@ -254,25 +251,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 10,
     borderRadius: 26,
-    width: '35%',
+    width: '100%',
     backgroundColor: 'rgb(111, 163,19)',
   },
   saveButtonText: {
     color: '#fff',
-    fontSize: 16,
-  },
-  cancelButton: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    paddingVertical: 10,
-    borderRadius: 26,
-    width: '35%',
-    borderWidth: 1,
-    borderColor: 'rgb(111, 163,19)',
-  },
-  cancelButtonText: {
-    color: 'rgb(111, 163,19)',
-    fontSize: 16,
+    fontSize: 16
   },
   inputLabelText: {
     fontWeight: 'bold',
