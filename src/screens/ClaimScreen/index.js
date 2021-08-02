@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import { View, Text ,Switch,TouchableOpacity} from 'react-native';
+import {View, Text ,Switch,TouchableOpacity, Dimensions} from 'react-native';
 import Container from '../../components/common/Container';
 import styles from './styles';
 import CheckBox from '@react-native-community/checkbox';
@@ -11,6 +11,7 @@ import {AUTH_PAGE} from '../../constants/routeNames';
 import Footer from '../../components/common/Footer';
 
 const ClaimScreen = ({navigation}) => {
+    const windowHeight = Dimensions.get('window').height;
     const [driverIssue, setDriverIssue] = useState("");
     const [q1isEnabled, setQ1IsEnabled] = useState(false);
     const [q2isEnabled, setQ2IsEnabled] = useState(false);
@@ -36,9 +37,8 @@ const ClaimScreen = ({navigation}) => {
         },
     ];
     return (
-        
-    <Container>
-        <View  style={{backgroundColor:"#f3e9f6", padding:20}}>
+    <Container style={{flexDirection:"column",flex:1,flexGrow:1,position:"relative"}}>
+        <View  style={{backgroundColor:"#f3e9f6", padding:20,flex:1,flexGrow:1,minHeight:windowHeight - 20}}>
             <View >
                 <Text style={{fontSize:27,fontWeight:"700",color:"#8e419c"}}>How to make a claim</Text>
             </View>
@@ -141,10 +141,10 @@ const ClaimScreen = ({navigation}) => {
                 </View>
             }
         </View>    
-        <View  style={{backgroundColor:"#8e419c", padding:20}}><Footer/></View>
+        {/* <View style={{}}> */}
+            <View  style={{position:"absolute",bottom:0,width:"100%",backgroundColor:"#8e419c", padding:20}}><Footer/></View>
+        {/* </View> */}
     </Container>
-        
-        
     )
 }
 
