@@ -131,12 +131,13 @@ const ClaimScreen = ({navigation}) => {
                 </View>
             }
             {isSelected &&
-                <View style={{flex:1,justifyContent:"flex-end",flexDirection:"row"}}>
+                <View style={{flex:1,flexDirection:"row"}}>
                     <CustomBtn 
                             bgColor={color.success} color="#fff" 
                             borderColor={color.success} title="Continue"
                             onPress={()=>{navigation.navigate(AUTH_PAGE)}}
-                            borderRadius={10}
+                            borderRadius={26}
+                            width="100%"
                         />
                 </View>
             }

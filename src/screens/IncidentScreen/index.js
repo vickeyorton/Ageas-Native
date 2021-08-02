@@ -367,12 +367,13 @@ const IncidentScreen = ({navigation}) => {
                             </Picker>
                         </View>
                     </View>
-                    <View style={{flex:1,justifyContent:"flex-end",flexDirection:"row"}}>
+                    <View style={{flex:1,flexDirection:"row"}}>
                         <CustomBtn 
                                 bgColor={color.success} color="#fff" 
                                 borderColor={color.success} title="Continue"
                                 onPress={()=>{continueHandle()}}
-                                borderRadius={10}
+                                borderRadius={26}
+                                width="100%"
                         />
                         {/* <TouchableOpacity
                             style={styles.continueButton}

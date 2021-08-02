@@ -33,7 +33,7 @@ const AuthScreen = ({navigation}) => {
                             <CustomBtn 
                             bgColor="#8e419c" color="#fff" 
                             borderColor="#8e419c" title="Sign In" 
-                            width="75%" margin="auto"
+                            width="100%" margin="auto"
                             onPress={()=>{navigation.navigate(LOGIN_PAGE)}}
                             
                             />
@@ -44,7 +44,7 @@ const AuthScreen = ({navigation}) => {
                             <CustomBtn 
                             bgColor="#fff" color="#8e419c" 
                             borderColor="#8e419c" title="Sign Up" 
-                            width="75%" margin="auto"
+                            width="100%" margin="auto"
                             // onPress={onPress}
                             />
                         </View>
