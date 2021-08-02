@@ -97,7 +97,7 @@ const Summary=({navigation})=> {
           <View style={styles.line} />
             <View style={styles.incidentSection}>
          
-               <Text style={{fontSize : 18}}>Involved details</Text>
+               <Text style={{fontSize : 18}}>Involved Parties details</Text>
            
               <TouchableOpacity onPress={()=>setShowInvolved(!showInvolved)}>
                {showInvolved ? 
@@ -141,7 +141,6 @@ const Summary=({navigation})=> {
           
       </View>
       <View style={styles.submitSection}>
-        <TouchableOpacity onPress={()=>navigation.navigate(INVOLVED_PAGE)}><Text style={styles.backButton}>Back</Text></TouchableOpacity>
         <TouchableOpacity onPress={()=>navigation.navigate(THANKYOU_PAGE)}><Text style={styles.submitButton} >Submit</Text></TouchableOpacity>
       </View>
      
@@ -211,30 +210,17 @@ const styles = StyleSheet.create({
   },
   submitSection : {
     paddingTop : 10,
-    display : "flex",
-    justifyContent : 'space-between',
-    flexDirection: 'row'
-  },
-  backButton : {
-    borderWidth : 1,
-    borderColor : "#8e419c",
-    color :"#8e419c",
-    width :70,
-    textAlign : "center",
-    borderRadius : 20,
-    paddingTop : 5,
-    paddingBottom : 5
   },
    submitButton : {
     borderWidth : 1,
-    backgroundColor : "green",
+    backgroundColor : "rgb(111, 163,19)",
     color : "white",
-    borderColor : "green",
-    width :70,
+    width :"100%",
     textAlign : "center",
-    borderRadius : 20,
+    borderRadius : 26,
     paddingTop : 5,
-    paddingBottom : 5
+    paddingBottom : 5,
+    fontSize:16
   }
 });
   

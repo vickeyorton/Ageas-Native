@@ -212,11 +212,7 @@ const Contact=({navigation})=> {
             </View>
 
             <View style={styles.submitButtonContainer}>
-              <TouchableOpacity
-                style={styles.backButton}
-                onPress={() => navigation.navigate(INCIDENT_PAGE)}>
-                <Text style={styles.backButtonText}>Back</Text>
-              </TouchableOpacity>
+              
               <TouchableOpacity
                 style={styles.continueButton}
                 onPress={onContinue}
@@ -274,6 +270,7 @@ const styles = StyleSheet.create({
   buttonTextNotPressed: {
     color: '#8e419c',
     fontSize: 16,
+    fontWeight:"bold"
   },
   selectionButtonPressed: {
     flexDirection: 'row',
@@ -289,25 +286,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   submitButtonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 10,
-  },
-  backButton: {
-    borderWidth: 1,
-    width: 80,
-    borderColor: 'rgb(111, 163,19)',
-    borderRadius: 26,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    paddingVertical: 10,
-  },
-  backButtonText: {
-    color: 'rgb(111, 163,19)',
+    marginTop: 10
   },
   continueButton: {
     borderWidth: 1,
-    width: 110,
+    width: "100%",
     borderColor: '#fff',
     backgroundColor: 'rgb(111, 163,19)',
     borderRadius: 26,
@@ -317,6 +300,7 @@ const styles = StyleSheet.create({
   },
   continueButtonText: {
     color: '#fff',
+    fontSize:16
   },
   questionContainer: {marginBottom: 10},
   question: {
